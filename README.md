@@ -23,4 +23,4 @@ nối đến server của công ty để nhận kết qủa. Có hai hình thứ
 - Gửi nội dung truy vấn đến server
 - Nhận kết quả truy vấn và hiện thị kết quả.
 
-##### Xem thêm file PDF để hiễu rõ yêu cầu
+##### Xem thêm file PDF để hiểu rõ yêu cầu
