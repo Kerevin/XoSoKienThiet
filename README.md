@@ -1,9 +1,10 @@
-Nguyễn Đăng Khoa
-MSSV: 18127121
-Trường Đại học Khoa Học Tự Nhiên - HCMC
+Nguyễn Đăng Khoa  
+MSSV: 18127121  
+Trường Đại học Khoa Học Tự Nhiên - HCMC  
 
 # XoSoKienThiet
 ### App dò xổ số kiến thiết
+### Ngôn ngữ: Python  
 ### Ngữ cảnh:
 Công ty Xổ số kiến thiết muốn thực hiện một chương trình hỗ trợ người dùng trong
 việc tra cứu kết quả xổ số hàng ngày. Người dùng sử dụng một chương trình client kết
@@ -21,3 +22,5 @@ nối đến server của công ty để nhận kết qủa. Có hai hình thứ
 - Kết nối đến server
 - Gửi nội dung truy vấn đến server
 - Nhận kết quả truy vấn và hiện thị kết quả.
+
+##### Xem thêm file PDF để hiễu rõ yêu cầu
