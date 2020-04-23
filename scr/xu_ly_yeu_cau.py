@@ -1,7 +1,5 @@
 import sqlite3
 
-print ("Opened database successfully");
-
 def query_two_parts(inp):
 	conn = sqlite3.connect('database.db')
 	cursor = conn.execute("SELECT * from VeXoSo where ThanhPho = '"+ inp[0] +"' AND VeSo = "+ inp[1] + " ")
@@ -16,9 +14,9 @@ def query_one_part(inp):
 def input_is_valid(inp):
 	conn = sqlite3.connect('database.db')
 	city_names = conn.execute("SELECT distinct(ThanhPho) from VeXoSo")
-	city_names = [name[0].lower() for name in city_names]	
+	city_names = [name[0] for name in city_names]	
 	conn.close()
-	if inp[0].lower() in city_names:
+	if inp[0] in city_names:
 		return True
 	return False
 
@@ -32,7 +30,7 @@ def get_result(inp):
 	
 	inp = inp.split()
 
-	# Gửi cách truy vấn
+	# Gửi tên các thành phố chỉ cách truy vấn
 	if inp[0].lower()=="h":
 		return get_cities()
 	if (not input_is_valid(inp)):		
@@ -41,9 +39,10 @@ def get_result(inp):
 	# Nếu gửi theo cú pháp <Tỉnh thành> <Vé Số>
 	if (len(inp) == 2):
 		cursor = query_two_parts(inp)		
-		row = list(cursor)[0]
 
+		row = list(cursor)
 		if len(row) > 0:
+			row = row[0]
 			return ["Chúc mừng bạn đã trúng %s trị giá %s" % (row[2], row[3])]
 		else:
 			return ["Xin lỗi bạn không trúng giải nào cả!"]
@@ -60,6 +59,6 @@ def get_result(inp):
 
 if __name__ == '__main__':
 	
-	print((get_result("h")))
+	print((get_result("BenTre 89")))
 	
 	input("Press any key to stop")

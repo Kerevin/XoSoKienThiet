@@ -25,8 +25,9 @@ def accept_incoming_connections():
 
 
 def send_help(client, cities):
-	client.send(bytes("Truy vấn thứ nhất: <Tên tỉnh thành> \n 	Ví dụ: LongAn", "utf-8"))
-	client.send(bytes("Truy vấn thứ hai: <Tên tỉnh thành>  <Vé số> \n 	Ví dụ: LongAn 12\n", "utf-8"))
+	client.send(bytes("Các tên tỉnh thành đều phải viết liền, không dấu và viết hoa mỗi từ.", "utf-8"))
+	client.send(bytes("Truy vấn thứ nhất: <Tên tỉnh thành> \n 	Ví dụ: LongAn \n", "utf-8"))
+	client.send(bytes("Truy vấn thứ hai: <Tên tỉnh thành>  <Vé số> \n 	Ví dụ: LongAn 1234\n", "utf-8"))
 	client.send(bytes("Các tỉnh thành hiện mở: " ,"utf-8"))
 	client.send(bytes(cities[0], "utf-8"))
 	for i in range(1, len(cities)):
@@ -41,7 +42,7 @@ def handle_client(client):# Takes client socket as argument.
 
 			result = xu_ly_yeu_cau.get_result(client_msg)
 			if result == 0: 
-				client.send(bytes("Không có dữ liệu, xin mời nhập lại", "utf-8"))
+				client.send(bytes("Không có dữ liệu, xin mời nhập lại theo đúng cú pháp! Gõ 'h' để xem cách truy vấn", "utf-8"))
 			else:
 				if len(result)  == 1:
 					client.send(bytes(result[0], "utf-8"))
@@ -60,7 +61,7 @@ def handle_client(client):# Takes client socket as argument.
 			
 if __name__ == '__main__':
 
-	server.listen(3)
+	server.listen(5)
 
 	print("Waiting for connection...")
 	try:

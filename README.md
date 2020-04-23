@@ -1,10 +1,21 @@
 Nguyễn Đăng Khoa  
 MSSV: 18127121  
 Trường Đại học Khoa Học Tự Nhiên - HCMC  
-
+Bộ môn: Mạng máy tính  
 # XoSoKienThiet
 ### App dò xổ số kiến thiết
 ### Ngôn ngữ: Python  
+- Giao thức TCP
+- Xử lý đa luồng
+- Sử dụng tkinter làm giao diện
+- Socket  
+- SQLite  
+
+### Cách thi hành  
+- Mở file scr/server.py  
+- Sau đó mở scr/customer.py  
+- Có thể chịu được 5 customers cùng một lúc  
+
 ### Ngữ cảnh:
 Công ty Xổ số kiến thiết muốn thực hiện một chương trình hỗ trợ người dùng trong
 việc tra cứu kết quả xổ số hàng ngày. Người dùng sử dụng một chương trình client kết
