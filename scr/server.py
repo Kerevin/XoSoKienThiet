@@ -5,7 +5,7 @@ from threading import Thread
 import socket
 import time
 import xu_ly_yeu_cau
-
+import Database.xskt.query_database as database
 host = "localhost"
 port = 8080
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -40,18 +40,23 @@ def handle_client(client):# Takes client socket as argument.
 		try:
 			client_msg = client.recv(1024).decode("utf-8")
 
-			result = xu_ly_yeu_cau.get_result(client_msg)
+			result = database.get_result(client_msg)
 			if result == 0: 
 				client.send(bytes("Không có dữ liệu, xin mời nhập lại theo đúng cú pháp! Gõ 'h' để xem cách truy vấn", "utf-8"))
 			else:
 				if len(result)  == 1:
+					# Dò theo truy vấn <tỉnh thành> <vé số>
 					client.send(bytes(result[0], "utf-8"))
-				elif len(result) == 7:
+				elif client_msg == "h":
+					# Gửi yêu cầu hướng dẫn truy vấn
 					send_help(client, result)
 				else:
+					# Truy vấn <tỉnh thành> 
 					client.send(bytes("Kết quả xổ số %s" % client_msg, "utf-8"))
-					for row in result:
-						client.send(bytes("%s: %s \n" % (row[2], row[0]), "utf-8"))
+					for giai, ve_so in result.items():
+						client.send(bytes("%s: %s\n" % (giai,", ".join((ve_so))),"utf-8"))
+
+							
 			
 		except OSError as e:
 			print("%s:%s has left." % addresses[client])
@@ -60,7 +65,7 @@ def handle_client(client):# Takes client socket as argument.
 			break;
 			
 if __name__ == '__main__':
-
+	
 	server.listen(5)
 
 	print("Waiting for connection...")
@@ -75,4 +80,7 @@ if __name__ == '__main__':
 
 	server.close()
 	sys.exit()
+	
+
+
 	

@@ -1,18 +1,22 @@
 import sqlite3
 
+db_name = 'database.db'
+
 def query_two_parts(inp):
-	conn = sqlite3.connect('database.db')
+	global db_name
+	conn = sqlite3.connect(db_name)
 	cursor = conn.execute("SELECT * from VeXoSo where ThanhPho = '"+ inp[0] +"' AND VeSo = "+ inp[1] + " ")
 	
 	return cursor
 def query_one_part(inp):
-	conn = sqlite3.connect('database.db')
+	conn = sqlite3.connect(db_name)
 	cursor = conn.execute("SELECT * from VeXoSo where ThanhPho = '"+ inp[0] +"' ")
 	
 	return cursor
 
 def input_is_valid(inp):
-	conn = sqlite3.connect('database.db')
+	global db_name
+	conn = sqlite3.connect(db_name)
 	city_names = conn.execute("SELECT distinct(ThanhPho) from VeXoSo")
 	city_names = [name[0] for name in city_names]	
 	conn.close()
@@ -21,7 +25,8 @@ def input_is_valid(inp):
 	return False
 
 def get_cities():
-	conn = sqlite3.connect('database.db')
+	global db_name
+	conn = sqlite3.connect(db_name)
 	city_names = conn.execute("SELECT distinct(ThanhPho) from VeXoSo")
 	city_names = [name[0] for name in city_names]
 	return city_names 
@@ -55,6 +60,7 @@ def get_result(inp):
 			return cursor
 		else:
 			return ""
+
 
 
 if __name__ == '__main__':
