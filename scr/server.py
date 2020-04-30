@@ -4,8 +4,9 @@ import sqlite3
 from threading import Thread
 import socket
 import time
-import xu_ly_yeu_cau
+import os
 import Database.xskt.query_database as database
+import Database.xskt.crawling_data as cr
 host = "localhost"
 port = 8080
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -63,10 +64,19 @@ def handle_client(client):# Takes client socket as argument.
 			
 			client.close()
 			break;
-			
-if __name__ == '__main__':
 	
+
+
+if __name__ == '__main__':
+	current_dir = os.getcwd()
+	try:
+		cr_thread = Thread(target = cr.crawling())
+		cr_thread.start()
+		cr_thread.join()
+	except Exception as e:
+		print("Error when trying to update database")
 	server.listen(5)
+	os.chdir(current_dir)
 
 	print("Waiting for connection...")
 	try:
@@ -80,7 +90,7 @@ if __name__ == '__main__':
 
 	server.close()
 	sys.exit()
-	
+
 
 
 	

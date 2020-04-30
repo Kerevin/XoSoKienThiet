@@ -23,6 +23,8 @@ class XsktPipeline:
         # item['xs_data']: dictionary về thông tin xổ số gồm:
         # keys là tỉnh thành
         # values là dictionay lưu trữ giải và vé số  {"Giải" : Số}
+        f = open("log.txt", "w")
+        f.write(str(item['xs_info'][0].split()[-1]))
 
         self.cursor.execute("select * from kq_xs")
         
@@ -38,5 +40,5 @@ class XsktPipeline:
                     (tinh_thanh, str(xoso)))
 
             self.connection.commit()
-
+       
         return item

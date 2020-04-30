@@ -13,3 +13,4 @@ class XsktItem(scrapy.Item):
     # name = scrapy.Field()
     xs_info = scrapy.Field()
     xs_data = scrapy.Field()
+    

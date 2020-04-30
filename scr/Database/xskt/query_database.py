@@ -1,6 +1,6 @@
 import sqlite3
 import os
-
+import unicodedata
 import sqlite3
 
 
@@ -19,16 +19,27 @@ def convert_string_to_dict(cursor):
 
 def get_data_from_db(inp):
 	conn = sqlite3.connect('./Database/xskt/xs_database.db')
-	cursor = conn.execute("SELECT ve_so from kq_xs where thanh_pho = '"+ inp[0]+ "' ")
+
+	city_names = tuple((conn.execute("SELECT distinct(thanh_pho) from kq_xs")))
+	normalized_name = [unicodedata.normalize('NFKD', name[0].replace("Đ", "D")).encode('ascii','ignore').decode().replace(" ","")  for name in city_names]	
+
+	name = ""
+	for i in range(len(normalized_name)):
+		#print(city_names)
+		if inp[0] == normalized_name[i]:
+			name = city_names[i][0]
+
+	cursor = conn.execute("SELECT ve_so from kq_xs where thanh_pho = '"+ name+ "' ")
 	
 	return cursor
 
 
 
 def input_is_valid(inp):
+	
 	conn = sqlite3.connect('./Database/xskt/xs_database.db')
 	city_names = conn.execute("SELECT distinct(thanh_pho) from kq_xs")
-	city_names = [name[0] for name in city_names]	
+	city_names = [unicodedata.normalize('NFKD', name[0].replace("Đ", "D")).encode('ascii','ignore').decode().replace(" ","")  for name in city_names]	
 	conn.close()
 	if inp[0] in city_names:
 		return True
@@ -53,7 +64,8 @@ def get_result(inp):
 
 	# Nếu gửi theo cú pháp <Tỉnh thành> <Vé Số>
 	if (len(inp) == 2):
-
+		if not("0" <= inp[1] <="9"):
+			return 0
 		data_ve_so = convert_string_to_dict(get_data_from_db(inp))
 		is_win_lottery = ()
 		for giai_thuong, ve_so in data_ve_so.items():
@@ -67,6 +79,7 @@ def get_result(inp):
 	# Nếu gửi theo cú pháp <Tỉnh thành>
 	elif (len(inp) == 1):
 		cursor = convert_string_to_dict(get_data_from_db(inp))
+		#cursor = list(get_data_from_db(inp))
 		return cursor
 
 
@@ -74,6 +87,6 @@ def get_result(inp):
 if __name__ == '__main__':
 
 	
-	print((get_result("DaLat")))
+	print((get_result("h")))
 	input("Press any key to stop")
 

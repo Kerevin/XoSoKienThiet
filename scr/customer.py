@@ -12,7 +12,7 @@ port = 8080
 class Interface(Tk):
 	def __init__(self):
 		super().__init__()
-		
+		self.title("Customer")
 		self.width = 700
 		self.height = 800
 		self.canvas = Canvas(self, width = self.width, height = self.height)
@@ -97,7 +97,9 @@ class Interface(Tk):
 			pass
 if __name__ == '__main__':	
 	try:
+		print("Connecting to host...")
 		s.connect((host, port))
+		print("Connected!")
 	except:
 		print("Error from trying to connect to host...")
 		print("About to exit!")
