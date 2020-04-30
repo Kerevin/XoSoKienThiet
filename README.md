@@ -10,11 +10,7 @@ Bộ môn: Mạng máy tính
 - Sử dụng tkinter làm giao diện
 - Socket  
 - SQLite  
-
-### Cách thi hành  
-- Mở file scr/server.py  
-- Sau đó mở scr/customer.py  
-- Có thể chịu được 5 customers cùng một lúc  
+- Scrapy  
 
 ### Ngữ cảnh:
 Công ty Xổ số kiến thiết muốn thực hiện một chương trình hỗ trợ người dùng trong
@@ -35,3 +31,10 @@ nối đến server của công ty để nhận kết qủa. Có hai hình thứ
 - Nhận kết quả truy vấn và hiện thị kết quả.
 
 ##### Xem thêm file PDF để hiểu rõ yêu cầu
+
+### Cách thi hành  
+- Mở file scr/server.py để khởi động server     
+- Sau đó mở scr/customer.py để bắt đầu dò xổ số    
+- Có thể chịu được 5 customers cùng một lúc  
+- Xem thêm dist/readme để cài đặt các thư viện cần thiết    
+
