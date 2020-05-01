@@ -1,5 +1,8 @@
-import os	
-import scrapy
+import os
+try:
+	import scrapy
+except Exception as e:
+	pass
 import datetime
 import time
 

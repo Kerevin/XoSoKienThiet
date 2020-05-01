@@ -57,7 +57,7 @@ def get_result(inp):
 	inp = inp.split()
 
 	# Gửi tên các thành phố chỉ cách truy vấn
-	if inp[0].lower()=="h":
+	if inp[0]=="h":
 		return get_cities()
 	if (not input_is_valid(inp)):		
 		return 0
@@ -87,6 +87,6 @@ def get_result(inp):
 if __name__ == '__main__':
 
 	
-	print((get_result("h")))
+	print((get_result("H")))
 	input("Press any key to stop")
 
