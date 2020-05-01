@@ -20,7 +20,7 @@ nối đến server của công ty để nhận kết qủa. Có hai hình thứ
 (nếu tỉnh thành đó có mở thưởng).
 - Người dùng gửi tên tỉnh thành và số vé, hệ thống tra cứu và trả về kết quả vé số
 đó có trúng giải không, nếu trúng thì giải mấy, số tiền bao nhiêu.
-### Yêu cầu:
+### Yêu cầu đề bài:   
 #### a. Server:
 - Nhận kết nối từ client
 - Nhận truy vấn từ client
